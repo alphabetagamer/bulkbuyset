@@ -6,6 +6,8 @@
 // @author       Alphabeta_g
 // @website
 // @match        *://steamcommunity.com/*/gamecards/*
+// @updateURL    https://github.com/alphabetagamer/bulkbuyset/blob/master/Bulk%20Set%20Buyer.user.js
+// @downloadURL  https://github.com/alphabetagamer/bulkbuyset/blob/master/Bulk%20Set%20Buyer.user.js
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant        GM_addStyle
 // ==/UserScript==
