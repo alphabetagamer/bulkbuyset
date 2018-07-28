@@ -14,19 +14,19 @@
 
 $(".gamecards_inventorylink").append("<button class='btn_grey_grey btn_medium' style='padding:5px 20px;float:left;margin: 5px 10px' id='Buy'>Mass BUY</button>");
 var gid2=window.location.pathname.split("/");
-    var gid=gid2[4];
+    var gid=gid2[4]; // Store game appID
     var i=0;
     var c;
-var cards=[];
+var cards=[]; //CARD LIST
 
 $('#Buy').click(function(){
 
 
     $(".badge_detail_tasks .badge_card_set_text").each(function(){
-       cards[i]=$(this).text().replace(/\s+/g, " ");
+       cards[i]=$(this).text().replace(/\s+/g, " "); // VALVE ADDS TOO MANY WHITE SPACES
         i++;
     });
-    for(i=0;i<cards.length;i=i+2)
+    for(i=0;i<cards.length;i=i+2) // Card NAMES ARE STORED IN EVERY ALTERNATE POSITION
     {
     
         var s=cards[i].trim();
@@ -43,8 +43,8 @@ $('#Buy').click(function(){
         {
 
         }
-        cards[i]=s.trim().replace(/ /g,"%20");
-       var js="https://steamcommunity.com/market/priceoverview/?country=IN&currency=24&appid=753&market_hash_name="+gid+"-"+cards[i]+"&json=true";
+        cards[i]=s.trim().replace(/ /g,"%20"); // MAKING THE NAME URL READY
+       var js="https://steamcommunity.com/market/priceoverview/?country=IN&currency=24&appid=753&market_hash_name="+gid+"-"+cards[i]+"&json=true"; // ADDRESS FOR PRICE CHECK LOADS OF CARDS HAVE A "(TRADING CARD)" IN THE HASH NAME WHICH IS ABSENT IN THE BADGE PAGE SO WE CHECK FOR IT FORM THE PRICE SITE
        c = function () {
     var tmp = 0;
     $.ajax({
@@ -58,11 +58,11 @@ $('#Buy').click(function(){
             tmp = 1;
         }
     });
-    return tmp;
+    return tmp; //IF THE NAME INCLUDE (TRADING CARD) THE JSON FAILS AND WE KNWO WE NEED TO ADD (TRADING CARD ) TO MAKE IT WORK
 }();
 if(c==0)
 {
-    cards[i]=cards[i]+"%20%28Trading%20Card%29";
+    cards[i]=cards[i]+"%20%28Trading%20Card%29"; // CHECK AND WORKS
 }
 
 
@@ -75,7 +75,7 @@ console.log(cards[i]);
         url2=url2+"&items[]="+gid+"-"+cards[i];
     }
     var url3=url+url2
-    console.log(url3);
+    console.log(url3); //FINAL LINK
 
 
 
