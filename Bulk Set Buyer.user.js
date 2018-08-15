@@ -6,8 +6,6 @@
 // @author       Alphabeta_g
 // @website
 // @match        *://steamcommunity.com/*/gamecards/*
-// @updateURL    https://github.com/alphabetagamer/bulkbuyset/blob/master/Bulk%20Set%20Buyer.user.js
-// @downloadURL  https://github.com/alphabetagamer/bulkbuyset/blob/master/Bulk%20Set%20Buyer.user.js
 // @require      https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
 // @grant        GM_addStyle
 // ==/UserScript==
@@ -19,6 +17,7 @@ var gid2=window.location.pathname.split("/");
     var gid=gid2[4]; // Store game appID
     var i=0;
     var c;
+    var jk=0;
 var cards=[]; //CARD LIST
 
 $('#Buy').click(function(){
@@ -45,7 +44,8 @@ $('#Buy').click(function(){
         {
 
         }
-        cards[i]=s.trim().replace(/ /g,"%20"); // MAKING THE NAME URL READY
+        cards[i]=s.trim().replace(/ /g,"%20").replace(/&/g,"%26"); // MAKING THE NAME URL READY
+
        var js="https://steamcommunity.com/market/priceoverview/?country=IN&currency=24&appid=753&market_hash_name="+gid+"-"+cards[i]+"&json=true"; // ADDRESS FOR PRICE CHECK LOADS OF CARDS HAVE A "(TRADING CARD)" IN THE HASH NAME WHICH IS ABSENT IN THE BADGE PAGE SO WE CHECK FOR IT FORM THE PRICE SITE
        c = function () {
     var tmp = 0;
@@ -76,6 +76,7 @@ console.log(cards[i]);
     {
         url2=url2+"&items[]="+gid+"-"+cards[i];
     }
+
     var url3=url+url2
     console.log(url3); //FINAL LINK
 
